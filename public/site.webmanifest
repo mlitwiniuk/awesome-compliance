@@ -1,0 +1,24 @@
+{
+  "name": "Awesome Compliance",
+  "short_name": "Compliance",
+  "description": "A curated list of awesome resources for Governance, Risk Management, and Compliance (GRC) professionals.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f1419",
+  "theme_color": "#00dc82",
+  "icons": [
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
+
+
+

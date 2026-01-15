@@ -1,0 +1,9 @@
+# robots.txt for awesome-compliance.com
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://awesome-compliance.com/sitemap-index.xml
+
+
+

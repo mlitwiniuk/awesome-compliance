@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f1419"/>
+      <stop offset="100%" style="stop-color:#1a2029"/>
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e7e9ea"/>
+      <stop offset="100%" style="stop-color:#00dc82"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Grid pattern -->
+  <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+    <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(0,220,130,0.05)" stroke-width="1"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  
+  <!-- Checkmark icon -->
+  <g transform="translate(100, 215)">
+    <rect width="200" height="200" rx="40" fill="#1a2029" stroke="#2f3b47" stroke-width="2"/>
+    <path d="M50 110 L84 144 L150 70" stroke="#00dc82" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="340" y="290" font-family="Georgia, serif" font-size="72" fill="url(#textGrad)">Awesome Compliance</text>
+  
+  <!-- Subtitle -->
+  <text x="340" y="360" font-family="system-ui, sans-serif" font-size="28" fill="#8b98a5">A curated list of resources for GRC professionals</text>
+  
+  <!-- Domain -->
+  <text x="340" y="420" font-family="system-ui, sans-serif" font-size="24" fill="#00dc82">awesome-compliance.com</text>
+</svg>
+
+
+

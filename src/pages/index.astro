@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { marked, Renderer } from 'marked';
+import { gfmHeadingId } from 'marked-gfm-heading-id';
+import fs from 'node:fs';
+import path from 'node:path';
+
+// Read README.md from project root
+const readmePath = path.join(process.cwd(), 'README.md');
+const readme = fs.readFileSync(readmePath, 'utf-8');
+
+// Custom renderer for external links
+const renderer = new Renderer();
+renderer.link = ({ href, title, tokens }) => {
+  // Render nested tokens (like images) properly
+  const text = tokens ? tokens.map(token => {
+    if (token.type === 'image') {
+      return `<img src="${token.href}" alt="${token.text || ''}"${token.title ? ` title="${token.title}"` : ''}>`;
+    }
+    return token.raw || '';
+  }).join('') : '';
+  
+  const isExternal = href?.startsWith('http://') || href?.startsWith('https://');
+  const titleAttr = title ? ` title="${title}"` : '';
+  
+  if (isExternal) {
+    return `<a href="${href}"${titleAttr} target="_blank" rel="noopener noreferrer">${text}</a>`;
+  }
+  return `<a href="${href}"${titleAttr}>${text}</a>`;
+};
+
+marked.use(gfmHeadingId());
+marked.use({ renderer });
+
+// Parse markdown to HTML
+const html = marked(readme);
+---
+
+<Layout>
+  <main>
+    <article class="content" set:html={html} />
+  </main>
+  
+  <footer>
+    <p>
+      Made with ♥ by the compliance community · 
+      <a href="https://github.com/getprobo/awesome-compliance" target="_blank" rel="noopener noreferrer">Contribute on GitHub</a>
+    </p>
+  </footer>
+</Layout>
+
+<style>
+  main {
+    min-height: calc(100vh - 200px);
+  }
+
+  .content {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  footer {
+    margin-top: var(--space-3xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+
+  footer a {
+    color: var(--color-link);
+    text-decoration: underline;
+    text-decoration-color: var(--color-border);
+    text-underline-offset: 2px;
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
+  }
+
+  footer a:hover {
+    color: var(--color-link-hover);
+    text-decoration-color: var(--color-accent);
+  }
+</style>
+
